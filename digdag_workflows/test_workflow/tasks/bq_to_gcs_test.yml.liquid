@@ -1,0 +1,22 @@
+in:
+  type: bigquery
+  project: {{ env.GCP_PROJECT }}
+  auth_method: json_key
+  keyfile:
+    content: '{{ env.SECRET_GCP_CREDENTIAL }}'
+  sql: 'SELECT column1,column2 FROM {{ env.GCP_BQ_DATASET }}.bq_table_test_1'
+
+out:
+  type: gcs
+  bucket: {{ env.GCP_GCS_BUCKET }}
+  path_prefix: test_data_from_bq
+  file_ext: .csv
+  auth_method: json_key
+  json_keyfile:
+    content: '{{ env.SECRET_GCP_CREDENTIAL }}'
+  formatter:
+    type: csv
+    encoding: UTF-8
+    
+exec:
+  min_output_tasks: 1

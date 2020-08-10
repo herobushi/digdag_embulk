@@ -1,0 +1,11 @@
+timezone: Asia/Tokyo
+
+_export:
+  !include : config/env.dig
+
+#_parallel: True
+
++bigquery_test:
+  !include : config/env.dig
+  bq>: queries_to_bq/bq_create_table.sql
+  dataset: dlg_test

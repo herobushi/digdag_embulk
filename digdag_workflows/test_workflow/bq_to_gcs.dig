@@ -1,0 +1,9 @@
+timezone: Asia/Tokyo
+
+_export:
+
+_parallel: True
+
++task1:
+  !include : config/env.dig
+  sh>: /root/.embulk/bin/embulk run tasks/bq_to_gcs_test.yml.liquid

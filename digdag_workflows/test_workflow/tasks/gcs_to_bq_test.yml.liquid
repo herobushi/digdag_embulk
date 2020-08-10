@@ -1,0 +1,29 @@
+in:
+  type: gcs
+  bucket: {{ env.GCP_GCS_BUCKET }}
+  path_prefix: test_data.csv
+  auth_method: json_key
+  json_keyfile:
+    content: '{{ env.SECRET_GCP_CREDENTIAL }}'
+  parser:
+    charset: UTF-8
+    newline: LF
+    type: csv
+    delimiter: ','
+    quote: '"'
+    header_line: true
+    columns:
+    - {name: column1, type: string}
+    - {name: column2, type: string}
+
+out:
+  type: bigquery
+  auth_method: json_key
+  json_keyfile:
+    content: '{{ env.SECRET_GCP_CREDENTIAL }}'
+  project: {{ env.GCP_PROJECT }}
+  dataset: {{ env.GCP_BQ_DATASET }}
+  table: bq_table_test_1
+  source_format: CSV
+exec:
+  min_output_tasks: 1
