@@ -1,7 +1,9 @@
+DROP TABLE IF EXISTS dlg_test.digdag_test_from_digdag_query2;
+
 CREATE TABLE
-  digdag_test_from_digdag_query2
+  dlg_test.digdag_test_from_digdag_query2
 AS
   SELECT
     *
   FROM
-    bq_table_test_1;
+    dlg_test.bq_table_test_1;
